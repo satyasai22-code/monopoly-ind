@@ -1,5 +1,6 @@
 const { Player } = require('./player');
 const { Property } = require('./property');
+const { boardConfig } = require('../config/boardConfig');
 
 class GameState {
   constructor() {
@@ -12,11 +13,9 @@ class GameState {
   }
 
   initializeBoard() {
-    const properties = [
-      new Property(1, 'Mediterranean Avenue', 60),
-      // ... Add other properties
-    ];
-    return properties;
+    return boardConfig.map((config) => {
+      return new Property(config.id, config.name, config.price || 0, config.type);
+    });
   }
 
   getCurrentPlayer() {
@@ -45,6 +44,7 @@ class GameState {
     if (property && property.ownerId === null && player.money >= property.price) {
       player.money -= property.price;
       property.ownerId = playerId;
+      player.properties.push(property);
     }
   }
 }

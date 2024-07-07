@@ -1,5 +1,6 @@
 import React from 'react';
 import Dice from './Dice';
+import './Player.css';
 
 function Player({ player, rollDice, buyProperty }) {
   return (
