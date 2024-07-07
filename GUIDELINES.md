@@ -10,9 +10,11 @@
 5. [Commit Message Guidelines](#commit-message-guidelines)
 
 ## General Guidelines
+- Always create a separate branch and raise a PR(Do not push directly to main branch).
 - Follow consistent coding styles and best practices.
 - Makesure naming conventions are STRICTLY followed everywhere(coding, branch, commit, PR)
-- Each name should be descriptive and conveys the purpose and should not be random x or y.
+- Follow proper file structure while creating new modules/files.
+- Each name should be `DESCRIPTIVE` and conveys the `PURPOSE` and should not be random x or y.
 - PRO TIP: function/method names are always verbs/actions. Variables are always Nouns
 
 ## Frontend Guidelines (React.js)
