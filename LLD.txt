@@ -1,0 +1,35 @@
++---------------------------------+
+|          Frontend (UI)          |
+|---------------------------------|
+| Game Lobby UI                   | <-- REST API --> Game Lobby Service
+| Game Setup UI                   | <-- REST API --> Game Logic Service
+| Game Board UI                   | <-- WebSocket --> Game Logic Service
+| Property Management UI          | <-- WebSocket --> Property Management Service
+| Trading Interface               | <-- WebSocket --> Trading Service
+| Financial Dashboard             | <-- WebSocket --> Financial Management Service
+| Jail Mechanic UI                | <-- WebSocket --> Jail Mechanic Service
+| In-Game Chat Interface          | <-- WebSocket --> Chat Service
+|---------------------------------|
+| WebSocket Client                |
+| REST API Client                 |
++-----------------+---------------+
+                  |
+                  |
+                  v
++-----------------+---------------+
+|             Backend             |
+|---------------------------------|
+| Game Lobby Service              |
+| Game Logic Service              |
+| Property Management Service     |
+| Trading Service                 |
+| Financial Management Service    |
+| Jail Mechanic Service           |
+| Chat Service                    |
+|---------------------------------|
+| WebSocket Server                |
+| REST API                        |
+| In-Memory Storage               |
++---------------------------------+
+
+
