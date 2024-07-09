@@ -1,26 +1,26 @@
-const { GameState } = require('../models/gameState');
+const GameLogicService = require('../services/GameLogicService');
 
-let gameState = new GameState();
-
-const startGame = (req, res) => {
-  gameState = new GameState();
-  res.status(200).json({ message: 'Game started', gameState });
-  req.app.get('io').emit('gameState', gameState);
+exports.startGame = (req, res) => {
+    const { lobbyId } = req.body;
+    const game = GameLogicService.startGame(lobbyId);
+    res.status(201).json(game);
 };
 
-const rollDice = (req, res) => {
-  const { playerId } = req.body;
-  const diceRoll = Math.floor(Math.random() * 6) + 1 + Math.floor(Math.random() * 6) + 1;
-  gameState.movePlayer(playerId, diceRoll);
-  res.status(200).json({ diceRoll, gameState });
-  req.app.get('io').emit('gameState', gameState);
+exports.getGameStatus = (req, res) => {
+    const { gameId } = req.params;
+    const gameStatus = GameLogicService.getGameStatus(gameId);
+    res.status(200).json(gameStatus);
 };
 
-const buyProperty = (req, res) => {
-  const { playerId } = req.body;
-  gameState.buyProperty(playerId);
-  res.status(200).json({ gameState });
-  req.app.get('io').emit('gameState', gameState);
+exports.rollDice = (req, res) => {
+    const { gameId } = req.params;
+    const result = GameLogicService.rollDice(gameId);
+    res.status(200).json(result);
 };
 
-module.exports = { startGame, rollDice, buyProperty };
+exports.movePlayer = (req, res) => {
+    const { gameId } = req.params;
+    const { playerId, steps } = req.body;
+    const updatedGame = GameLogicService.movePlayer(gameId, playerId, steps);
+    res.status(200).json(updatedGame);
+};
