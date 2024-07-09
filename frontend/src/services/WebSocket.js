@@ -2,4 +2,12 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:5000');
 
-export default socket;
+const joinGame = (gameId) => {
+    socket.emit('joinGame', gameId);
+};
+
+const onEvent = (event, callback) => {
+    socket.on(event, callback);
+};
+
+export { joinGame, onEvent };
