@@ -1,10 +1,10 @@
 const express = require('express');
-const { buyProperty, payRent, getPropertyStatus } = require('../controllers/propertyController');
+const propertyController = require('../controllers/propertyController');
 
 const router = express.Router();
 
-router.post('/:gameId/buy', buyProperty); 
-router.post('/:gameId/payRent', payRent); 
-router.get('/:gameId/:propertyId/status', getPropertyStatus); 
+router.post('/buy', propertyController.buyProperty);
+router.post('/pay-rent', propertyController.payRent);
+router.get('/:gameId/:propertyId/status', propertyController.getPropertyStatus);
 
 module.exports = router;

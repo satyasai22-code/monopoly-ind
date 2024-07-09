@@ -1,10 +1,10 @@
 const express = require('express');
-const { createLobby, joinLobby, getLobbies } = require('../controllers/lobbyController');
+const lobbyController = require('../controllers/lobbyController');
 
 const router = express.Router();
 
-router.post('/create', createLobby);
-router.post('/join', joinLobby);
-router.get('/', getLobbies);
+router.post('/', lobbyController.createLobby);
+router.get('/', lobbyController.getLobbies);
+router.post('/join', lobbyController.joinLobby);
 
 module.exports = router;

@@ -1,11 +1,11 @@
 const express = require('express');
-const { startGame, getGameStatus, rollDice, movePlayer } = require('../controllers/gameController');
+const gameController = require('../controllers/gameController');
 
 const router = express.Router();
 
-router.post('/start', startGame); 
-router.get('/:gameId/status', getGameStatus); 
-router.post('/:gameId/rollDice', rollDice); 
-router.post('/:gameId/movePlayer', movePlayer); 
+router.post('/start', gameController.startGame);
+router.get('/:gameId/status', gameController.getGameStatus);
+router.post('/roll', gameController.rollDice);
+router.post('/move', gameController.movePlayer);
 
 module.exports = router;

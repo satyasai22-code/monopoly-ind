@@ -1,10 +1,10 @@
 const express = require('express');
-const { proposeTrade, acceptTrade, rejectTrade } = require('../controllers/tradeController');
+const tradeController = require('../controllers/tradeController');
 
 const router = express.Router();
 
-router.post('/:gameId/propose', proposeTrade);
-router.post('/:gameId/accept', acceptTrade);
-router.post('/:gameId/reject', rejectTrade);
+router.post('/propose', tradeController.proposeTrade);
+router.post('/accept', tradeController.acceptTrade);
+router.post('/reject', tradeController.rejectTrade);
 
 module.exports = router;
