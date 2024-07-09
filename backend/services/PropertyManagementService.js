@@ -1,3 +1,4 @@
+const Property = require('../models/Property');
 const { emitEvent } = require('../utils/WebSocket');
 const games = require('./GameLogicService').games;
 
@@ -9,6 +10,7 @@ exports.buyProperty = (gameId, playerId, propertyId) => {
             property.owner = playerId;
             const player = game.players.find(p => p.id === playerId);
             player.money -= property.price;
+            player.properties.push(property);
             emitEvent(gameId, 'propertyBought', game);
             return game;
         }

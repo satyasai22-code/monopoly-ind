@@ -1,9 +1,17 @@
+const Game = require('../models/Game');
+const Player = require('../models/Player');
+const Property = require('../models/Property');
 const { emitEvent } = require('../utils/WebSocket');
 const games = [];
 
-exports.startGame = (lobbyId) => {
-    const game = { id: Date.now(), lobbyId, players: [], board: [], currentTurn: 0 };
+exports.createGame = (lobbyId) => {
+    const game = new Game(Date.now(), lobbyId);
     games.push(game);
+    return game;
+};
+
+exports.startGame = (lobbyId) => {
+    const game = this.createGame(lobbyId);
     emitEvent(game.id, 'gameStarted', game);
     return game;
 };

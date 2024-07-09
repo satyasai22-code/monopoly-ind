@@ -1,11 +1,11 @@
+const ChatMessage = require('../models/ChatMessage');
 const { emitEvent } = require('../utils/WebSocket');
 const games = require('./GameLogicService').games;
 
 exports.sendMessage = (gameId, playerId, message) => {
     const game = games.find(g => g.id === gameId);
     if (game) {
-        const chatMessage = { id: Date.now(), playerId, message, timestamp: new Date() };
-        game.chat = game.chat || [];
+        const chatMessage = new ChatMessage(Date.now(), playerId, message);
         game.chat.push(chatMessage);
         emitEvent(gameId, 'newMessage', chatMessage);
         return chatMessage;
@@ -16,7 +16,7 @@ exports.sendMessage = (gameId, playerId, message) => {
 exports.getMessages = (gameId) => {
     const game = games.find(g => g.id === gameId);
     if (game) {
-        return game.chat || [];
+        return game.chat;
     }
     throw new Error('Game not found');
 };
