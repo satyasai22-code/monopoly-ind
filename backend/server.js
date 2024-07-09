@@ -6,6 +6,8 @@ const gameRoutes = require('./routes/gameRoutes');
 const propertyRoutes = require('./routes/propertyRoutes');
 const tradeRoutes = require('./routes/tradeRoutes');
 const chatRoutes = require('./routes/chatRoutes');
+const jailMechanicRoutes = require('./routes/jailMechanicRoutes');
+const financialManagementRoutes = require('./routes/financialManagementRoutes');
 const { initWebSocket } = require('./utils/WebSocket');
 
 const app = express();
@@ -18,6 +20,8 @@ app.use('/api/games', gameRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/trades', tradeRoutes);
 app.use('/api/chats', chatRoutes);
+app.use('/api/jail', jailMechanicRoutes); 
+app.use('/api/finance', financialManagementRoutes); 
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
