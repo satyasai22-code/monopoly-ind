@@ -1,4 +1,4 @@
-const { Player } = require('./player');
+const { Player } = require('./Player');
 const { Property } = require('./property');
 const { boardConfig } = require('../config/boardConfig');
 
