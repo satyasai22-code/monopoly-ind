@@ -1,55 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { joinGame, onEvent } from '../../services/WebSocket';
-import { useParams } from 'react-router-dom';
+// src/components/GameBoard/GameBoard.js
+import React, { useEffect, useState, useContext } from 'react';
+import api from '../../services/api';
+import { onEvent } from '../../services/WebSocket';
+import Dice from './Dice';
+import Player from './Player';
+import { GameContext } from '../../contexts/GameContext';
 
 const GameBoard = () => {
-    const { gameId } = useParams();
-    const [gameState, setGameState] = useState(null);
+    const { gameId, players, setPlayers, board, setBoard } = useContext(GameContext);
+    const [currentPlayer, setCurrentPlayer] = useState(null);
 
     useEffect(() => {
-        joinGame(gameId);
+        // Fetch initial game state
+        const fetchGameState = async () => {
+            try {
+                const response = await api.get(`/games/${gameId}`);
+                setPlayers(response.data.players);
+                setBoard(response.data.board);
+                setCurrentPlayer(response.data.currentTurn);
+            } catch (error) {
+                console.error('Failed to fetch game state:', error);
+            }
+        };
 
-        onEvent('gameStarted', (game) => {
-            setGameState(game);
+        fetchGameState();
+
+        // Listen for real-time game updates
+        onEvent('gameUpdated', (updatedGame) => {
+            setPlayers(updatedGame.players);
+            setBoard(updatedGame.board);
+            setCurrentPlayer(updatedGame.currentTurn);
         });
-
-        onEvent('diceRolled', (data) => {
-            // Update game state based on dice roll
-        });
-
-        onEvent('playerMoved', (game) => {
-            setGameState(game);
-        });
-
-        onEvent('propertyBought', (game) => {
-            setGameState(game);
-        });
-
-        onEvent('rentPaid', (game) => {
-            setGameState(game);
-        });
-
-        onEvent('tradeProposed', (trade) => {
-            // Handle trade proposal
-        });
-
-        onEvent('tradeAccepted', (trade) => {
-            // Handle trade acceptance
-        });
-
-        onEvent('tradeRejected', (trade) => {
-            // Handle trade rejection
-        });
-
-        onEvent('newMessage', (message) => {
-            // Handle new chat message
-        });
-
-    }, [gameId]);
+    }, [gameId, setPlayers, setBoard]);
 
     return (
         <div>
-            {/* Render game board based on gameState */}
+            <h2>Game Board</h2>
+            <div className="board">
+                {/* Render the game board here, e.g., properties */}
+                {board.map((property, index) => (
+                    <div key={index} className="property">
+                        {property.name}
+                    </div>
+                ))}
+            </div>
+            <div className="players">
+                {players.map((player) => (
+                    <Player key={player.id} player={player} />
+                ))}
+            </div>
+            <Dice currentPlayer={currentPlayer} />
         </div>
     );
 };
