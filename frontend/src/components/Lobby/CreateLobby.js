@@ -1,34 +1,31 @@
+// src/components/Lobby/CreateLobby.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 
 const CreateLobby = () => {
-  const [name, setName] = useState('');
-  const [maxPlayers, setMaxPlayers] = useState(4);
+    const [lobbyName, setLobbyName] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post('/api/lobbies/create', { name, maxPlayers });
-    setName('');
-    setMaxPlayers(4);
-  };
+    const handleCreateLobby = async () => {
+        try {
+            const response = await api.post('/lobbies', { name: lobbyName });
+            console.log('Lobby created:', response.data);
+            setLobbyName('');
+        } catch (error) {
+            console.error('Failed to create lobby:', error);
+        }
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input 
-        type="text" 
-        value={name} 
-        onChange={(e) => setName(e.target.value)} 
-        placeholder="Lobby Name" 
-      />
-      <input 
-        type="number" 
-        value={maxPlayers} 
-        onChange={(e) => setMaxPlayers(e.target.value)} 
-        placeholder="Max Players" 
-      />
-      <button type="submit">Create Lobby</button>
-    </form>
-  );
+    return (
+        <div>
+            <input
+                type="text"
+                value={lobbyName}
+                onChange={(e) => setLobbyName(e.target.value)}
+                placeholder="Lobby Name"
+            />
+            <button onClick={handleCreateLobby}>Create Lobby</button>
+        </div>
+    );
 };
 
 export default CreateLobby;
