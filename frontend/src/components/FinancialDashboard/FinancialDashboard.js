@@ -1,6 +1,7 @@
 // src/components/FinancialDashboard/FinancialDashboard.js
 import React, { useContext, useEffect, useState } from 'react';
 import api from '../../services/api';
+import { onEvent } from '../../services/WebSocket';
 import { GameContext } from '../../contexts/GameContext';
 
 const FinancialDashboard = () => {

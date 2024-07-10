@@ -1,7 +1,11 @@
 let io;
 
 const initWebSocket = (server) => {
-    io = require('socket.io')(server);
+    io = require('socket.io')(server, {
+        cors: {
+          origin: '*',
+        }
+    });
     
     io.on('connection', (socket) => {
         console.log('New client connected', socket.id);

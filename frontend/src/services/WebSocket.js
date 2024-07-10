@@ -10,9 +10,11 @@ const joinGame = (gameId) => {
 const onEvent = (event, callback) => {
     socket.on(event, callback);
 };
-
+const sendMessage = (message) => {
+    socket.emit('sendMessage', message);
+};
 const disconnectSocket = () => {
     socket.disconnect();
 };
 
-export { joinGame, onEvent, disconnectSocket };
+export { joinGame, onEvent, disconnectSocket, sendMessage };

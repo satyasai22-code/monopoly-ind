@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require('cors'); 
 const lobbyRoutes = require('./routes/lobbyRoutes');
 const gameRoutes = require('./routes/gameRoutes');
 const propertyRoutes = require('./routes/propertyRoutes');
@@ -11,6 +12,25 @@ const { initWebSocket } = require('./utils/WebSocket');
 const app = express();
 const server = http.createServer(app);
 initWebSocket(server);
+
+// const allowedOrigins = ['http://localhost:3000'];
+
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     methods: ['GET', 'POST', 'PUT'],
+//     allowedHeaders: ['Content-Type'],
+//     credentials: false
+// }));
+
+app.use(cors({
+    origin: '*',
+}));
 
 app.use(express.json());
 app.use('/api/lobbies', lobbyRoutes);

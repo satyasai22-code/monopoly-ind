@@ -16,7 +16,7 @@ const GameBoard = () => {
     const [gameStatus, setGameStatus] = useState(null);
 
     useEffect(() => {
-        joinGame(gameId);
+        // joinGame(gameId);
 
         const fetchGameStatus = async () => {
             try {

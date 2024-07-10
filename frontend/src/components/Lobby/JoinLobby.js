@@ -1,11 +1,14 @@
 // src/components/Lobby/JoinLobby.js
 import React from 'react';
 import { joinGame } from '../../services/WebSocket';
+import { useHistory } from 'react-router-dom';
 
 const JoinLobby = ({ lobbies }) => {
+    const history = useHistory()
     const handleJoinLobby = (lobbyId) => {
         joinGame(lobbyId);
         console.log('Joined lobby:', lobbyId);
+        history.push(`/game/${lobbyId}`);
     };
 
     return (

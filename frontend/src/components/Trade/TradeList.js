@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import api from '../../services/api';
 import { GameContext } from '../../contexts/GameContext';
+import { onEvent } from '../../services/WebSocket';
 import Trade from './Trade';
 
 const TradeList = () => {

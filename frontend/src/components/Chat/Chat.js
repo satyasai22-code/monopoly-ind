@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { GameContext } from '../../contexts/GameContext';
 import { onEvent, sendMessage } from '../../services/WebSocket';
+import api from '../../services/api';
 import Message from './Message';
 
 const Chat = () => {
