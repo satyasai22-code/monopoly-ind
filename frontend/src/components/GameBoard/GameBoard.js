@@ -4,6 +4,7 @@ import api from '../../services/api';
 import { onEvent } from '../../services/WebSocket';
 import Dice from './Dice';
 import Player from './Player';
+import PropertyList from '../Property/PropertyList';
 import { GameContext } from '../../contexts/GameContext';
 
 const GameBoard = () => {
@@ -36,14 +37,7 @@ const GameBoard = () => {
     return (
         <div>
             <h2>Game Board</h2>
-            <div className="board">
-                {/* Render the game board here, e.g., properties */}
-                {board.map((property, index) => (
-                    <div key={index} className="property">
-                        {property.name}
-                    </div>
-                ))}
-            </div>
+            <PropertyList />
             <div className="players">
                 {players.map((player) => (
                     <Player key={player.id} player={player} />
