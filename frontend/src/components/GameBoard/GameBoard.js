@@ -5,6 +5,7 @@ import { onEvent } from '../../services/WebSocket';
 import Dice from './Dice';
 import Player from './Player';
 import PropertyList from '../Property/PropertyList';
+import TradeList from '../Trade/TradeList';
 import { GameContext } from '../../contexts/GameContext';
 
 const GameBoard = () => {
@@ -44,6 +45,7 @@ const GameBoard = () => {
                 ))}
             </div>
             <Dice currentPlayer={currentPlayer} />
+            <TradeList />
         </div>
     );
 };
