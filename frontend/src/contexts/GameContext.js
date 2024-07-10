@@ -7,9 +7,21 @@ export const GameProvider = ({ children }) => {
     const [gameId, setGameId] = useState(null);
     const [players, setPlayers] = useState([]);
     const [board, setBoard] = useState([]);
+    const [currentTurn, setCurrentTurn] = useState(0);
 
     return (
-        <GameContext.Provider value={{ gameId, setGameId, players, setPlayers, board, setBoard }}>
+        <GameContext.Provider
+            value={{
+                gameId,
+                setGameId,
+                players,
+                setPlayers,
+                board,
+                setBoard,
+                currentTurn,
+                setCurrentTurn
+            }}
+        >
             {children}
         </GameContext.Provider>
     );

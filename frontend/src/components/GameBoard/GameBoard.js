@@ -6,6 +6,9 @@ import Dice from './Dice';
 import Player from './Player';
 import PropertyList from '../Property/PropertyList';
 import TradeList from '../Trade/TradeList';
+import FinancialDashboard from '../FinancialDashboard/FinancialDashboard';
+import JailMechanic from '../JailMechanic/JailMechanic';
+import Chat from '../Chat/Chat';
 import { GameContext } from '../../contexts/GameContext';
 
 const GameBoard = () => {
@@ -46,6 +49,9 @@ const GameBoard = () => {
             </div>
             <Dice currentPlayer={currentPlayer} />
             <TradeList />
+            <FinancialDashboard />
+            <JailMechanic />
+            <Chat />
         </div>
     );
 };
