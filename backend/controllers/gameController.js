@@ -4,7 +4,7 @@ exports.startGame = (req, res) => {
     try {
         const { lobbyId } = req.body;
         const game = GameLogicService.startGame(lobbyId);
-        res.status(201).json(game);
+        res.status(200).json(game);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -13,8 +13,8 @@ exports.startGame = (req, res) => {
 exports.getGameStatus = (req, res) => {
     try {
         const { gameId } = req.params;
-        const gameStatus = GameLogicService.getGameStatus(gameId);
-        res.status(200).json(gameStatus);
+        const game = GameLogicService.getGameStatus(gameId);
+        res.status(200).json(game);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -22,9 +22,9 @@ exports.getGameStatus = (req, res) => {
 
 exports.rollDice = (req, res) => {
     try {
-        const { gameId } = req.body;
-        const diceRoll = GameLogicService.rollDice(gameId);
-        res.status(200).json(diceRoll);
+        const { gameId } = req.params;
+        const result = GameLogicService.rollDice(gameId);
+        res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
