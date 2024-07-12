@@ -6,6 +6,7 @@ const CreateLobby = () => {
     const [lobbyName, setLobbyName] = useState('');
 
     const handleCreateLobby = async () => {
+        if(!lobbyName) return;
         try {
             const response = await api.post('/lobbies', { name: lobbyName });
             console.log('Lobby created:', response.data);

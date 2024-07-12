@@ -15,7 +15,7 @@ const JoinLobby = ({ lobbies }) => {
         <div>
             <h3>Join a Lobby</h3>
             <ul>
-                {lobbies.map((lobby) => (
+                {lobbies && lobbies.map((lobby) => (
                     <li key={lobby.id}>
                         {lobby.name} - {lobby.players.length} players
                         <button onClick={() => handleJoinLobby(lobby.id)}>Join</button>

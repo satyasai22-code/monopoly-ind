@@ -25,4 +25,8 @@ const emitEvent = (gameId, event, data) => {
     io.to(gameId).emit(event, data);
 };
 
-module.exports = { initWebSocket, emitEvent };
+const emitEventWithOutGameId = (eventName, data) => {
+    io.emit(eventName, data); 
+}
+
+module.exports = { initWebSocket, emitEvent, emitEventWithOutGameId};

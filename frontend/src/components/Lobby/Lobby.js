@@ -23,7 +23,8 @@ const Lobby = () => {
 
         // Listen for real-time updates to lobbies
         onEvent('lobbyUpdated', (updatedLobbies) => {
-            setLobbies(updatedLobbies);
+            // console.log(`onEvent:lobbyUpdated: ${updatedLobbies}`)
+            if(updatedLobbies) setLobbies(updatedLobbies);
         });
     }, []);
 

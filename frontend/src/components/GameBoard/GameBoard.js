@@ -16,7 +16,7 @@ const GameBoard = () => {
     const [gameStatus, setGameStatus] = useState(null);
 
     useEffect(() => {
-        // joinGame(gameId);
+        joinGame(gameId);
 
         const fetchGameStatus = async () => {
             try {
@@ -32,11 +32,11 @@ const GameBoard = () => {
         onEvent('gameStarted', (data) => {
             setGameStatus(data);
         });
-
+        // TODO
         onEvent('diceRolled', (data) => {
             console.log('Dice rolled:', data);
         });
-
+        //TODO
         onEvent('playerMoved', (data) => {
             console.log('Player moved:', data);
         });

@@ -13,6 +13,7 @@ exports.startGame = (req, res) => {
 exports.getGameStatus = (req, res) => {
     try {
         const { gameId } = req.params;
+        console.log(`gameId: ${gameId} req: ${req}`)
         const game = GameLogicService.getGameStatus(gameId);
         res.status(200).json(game);
     } catch (error) {
